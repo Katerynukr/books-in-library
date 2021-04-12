@@ -1,6 +1,8 @@
 ﻿using BookLibraryApplication;
 using BookLibraryApplication.Writers;
+using BookLibraryDomain.Factories;
 using BookLibraryDomain.Interfaces;
+using BookLibraryDomain.Services;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
@@ -16,6 +18,9 @@ namespace BookLibraryConsoleRunner
         {
             return new ServiceCollection()
                 .AddSingleton<BookLibraryCLI>()
+                .AddSingleton<CommandFactory>()
+                .AddSingleton<IWriter, ConsoleWriter>()
+                .AddSingleton<IFileService, JsonFileService>()
                 .AddSingleton<IWriter, ConsoleWriter>()
                 .BuildServiceProvider();
         }
