@@ -22,14 +22,15 @@ namespace BookLibraryDomain.Factories
 
         public ICommand Build(string input)
         {
-            var commands = Enum.GetNames(typeof(CommandEnums)).ToList();
-            if (commands.Any(c => input.Contains(c)))
+            Enum.TryParse(input, out CommandEnums commandEnum);
+            switch(commandEnum)
             {
-                return new AddNewBookCommand(_writer, _fileService);
-            }
-            if(commands.Any(c => input.Contains(c)))
-            {
-                return new DeleteBookCommand(_writer, _fileService);
+                case CommandEnums.Add:
+                    return new AddNewBookCommand(_writer, _fileService)
+                case CommandEnums.Delete:
+                    return new DeleteBookCommand(_writer, _fileService);
+                case CommandEnums.Borrow:
+                    return new TakeCommand(_writer, _fileService);
             }
             throw new ArgumentException("Command was not recognied");
         }
