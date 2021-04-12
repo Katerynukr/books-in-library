@@ -35,11 +35,11 @@ namespace BookLibraryDomain.Services
 
             foreach(var book in books)
             {
-                SaveNewBook(book);
+                SaveBook(book);
             }
         }
 
-        public void SaveNewBook(Book book)
+        public void SaveBook(Book book)
         {
             var jsonString = JsonConvert.SerializeObject(book);
             File.AppendAllText(_dataUrl, jsonString + Environment.NewLine);

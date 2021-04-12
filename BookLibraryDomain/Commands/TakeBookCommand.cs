@@ -10,13 +10,13 @@ using System.Windows.Input;
 
 namespace BookLibraryDomain.Commands
 {
-    public class TakeCommand : Interfaces.ICommand
+    public class TakeBookCommand : Interfaces.ICommand
     {
         private readonly IWriter _writer;
         private readonly IFileService _fileService;
         private readonly DataService _dataService;
 
-        public TakeCommand(IWriter writer, IFileService fileService, DataService dataService)
+        public TakeBookCommand(IWriter writer, IFileService fileService, DataService dataService)
         {
             _writer = writer;
             _fileService = fileService;
@@ -25,11 +25,11 @@ namespace BookLibraryDomain.Commands
 
         public void Execute()
         {
-            var bookName = _writer.ReadLine("Please enter the name of the book");
+            var booksNames = _writer.ReadLine("Please enter the names of the books");
             var customerName = _writer.ReadLine("Please enter your Name");
             var books = _fileService.GetAll();
-            AddInfoToTaken(books, bookName, customerName);
-            DeleteBook(books, bookName);
+            AddInfoToTaken(books, booksNames, customerName);
+            DeleteBook(books, booksNames);
         }
 
         private void DeleteBook(IEnumerable<Book> books, string bookName)
@@ -38,17 +38,17 @@ namespace BookLibraryDomain.Commands
             _fileService.Overwrite(filteredBooks);
         }
 
-        private void AddInfoToTaken(IEnumerable<Book> books, string bookName, string customerName)
+        private void AddInfoToTaken(IEnumerable<Book> books, string booksNames, string customerName)
         {
-            var book = books.FirstOrDefault(b => b.Name == bookName);
-            var takeInfo = new List<TakeInformation>() {
-                new TakeInformation()
-                {
-                     BookName = book.Name
-                }
-            };
+            var booksToTake = new List<Book>();
+            foreach(var bookName in booksNames)
+            {
+                booksToTake.Add(books.FirstOrDefault(b => b.Name == booksNames));
+            }
+            var booksTakeInfo = new List<TakeInformation>();
+            booksToTake.ForEach(b => booksTakeInfo.Add(new TakeInformation() { BookName = b.Name }));
 
-            takeInfo.ForEach(i => _dataService.TakeInformation.Add(customerName, i));
+            _dataService.TakeInformation.Add(customerName, booksTakeInfo);
         }
     }
 }

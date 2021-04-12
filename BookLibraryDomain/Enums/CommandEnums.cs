@@ -14,6 +14,8 @@ namespace BookLibraryDomain.Enums
         [Description("To delete a book")]
         Delete,
         [Description("To borrow a book")]
-        Borrow,
+        Take,
+        [Description("To return a book")]
+        Return
     }
 }

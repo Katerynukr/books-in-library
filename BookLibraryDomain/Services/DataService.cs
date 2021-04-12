@@ -9,6 +9,7 @@ namespace BookLibraryDomain.Services
 {
     public class DataService
     {
-        public Dictionary<string, TakeInformation> TakeInformation = new();
+        public Dictionary<string, List<TakeInformation>> TakeInformation = new();
+        public List<Book> TakenBooks = new();
     }
 }

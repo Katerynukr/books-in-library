@@ -20,6 +20,7 @@ namespace BookLibraryConsoleRunner
                 .AddSingleton<BookLibraryCLI>()
                 .AddSingleton<CommandFactory>()
                 .AddSingleton<IWriter, ConsoleWriter>()
+                .AddSingleton<DataService>()
                 .AddSingleton<IFileService, JsonFileService>()
                 .AddSingleton<IWriter, ConsoleWriter>()
                 .BuildServiceProvider();

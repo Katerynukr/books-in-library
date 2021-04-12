@@ -39,7 +39,7 @@ namespace BookLibraryDomain.Commands
         }
         private void Store(Book book)
         {
-            _fileService.SaveNewBook(book);
+            _fileService.SaveBook(book);
         }
     }
 }
