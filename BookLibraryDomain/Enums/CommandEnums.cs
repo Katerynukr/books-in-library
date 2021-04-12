@@ -10,6 +10,8 @@ namespace BookLibraryDomain.Enums
     public enum CommandEnums
     {
         [Description("To add new book")]
-        Add
+        Add,
+        [Description("To delete a book")]
+        Delete,
     }
 }

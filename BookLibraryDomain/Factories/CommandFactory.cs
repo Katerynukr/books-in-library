@@ -27,6 +27,10 @@ namespace BookLibraryDomain.Factories
             {
                 return new AddNewBookCommand(_writer, _fileService);
             }
+            if(commands.Any(c => input.Contains(c)))
+            {
+                return new DeleteBookCommand(_writer, _fileService);
+            }
             throw new ArgumentException("Command was not recognied");
         }
     }

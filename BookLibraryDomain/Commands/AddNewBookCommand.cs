@@ -32,8 +32,7 @@ namespace BookLibraryDomain.Commands
             PropertyInfo[] properties = typeof(Book).GetProperties();
             foreach(var property in properties)
             {
-                _writer.PrintLine($"Please enter value for {property.Name}");
-                var value = _writer.ReadLine();
+                var value = _writer.ReadLine($"Please enter value for {property.Name}");
                 property.SetValue( model , value);
             }
             return model;

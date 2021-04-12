@@ -9,6 +9,6 @@ namespace BookLibraryDomain.Interfaces
     public interface IWriter
     {
         void PrintLine(string input);
-        string ReadLine();
+        string ReadLine(string message);
     }
 }

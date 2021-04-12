@@ -35,8 +35,7 @@ namespace BookLibraryApplication
         {
             try 
             {
-                _writer.PrintLine("Enter your command: ");
-                var commandString = _writer.ReadLine();
+                var commandString = _writer.ReadLine("Enter your command: ");
 
                 var command = _commandFactory.Build(commandString);
                 command.Execute();

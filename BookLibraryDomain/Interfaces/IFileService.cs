@@ -10,6 +10,9 @@ namespace BookLibraryDomain.Interfaces
     public interface IFileService
     {
         void SaveNewBook(Book book);
+        IEnumerable<Book> GetAll();
+
+        void Overwrite(IEnumerable<Book> books);
 
     }
 }

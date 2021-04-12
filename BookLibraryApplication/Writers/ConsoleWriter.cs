@@ -14,8 +14,9 @@ namespace BookLibraryApplication.Writers
             Console.WriteLine(input);
         }
 
-        public string ReadLine()
+        public string ReadLine(string message)
         {
+            PrintLine(message);
             return Console.ReadLine();
         }
     }
